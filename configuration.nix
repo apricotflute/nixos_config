@@ -97,7 +97,7 @@
   users.users.philip = {
     isNormalUser = true;
     description = "philip";
-    extraGroups = [ "networkmanager" "wheel" "wireshark" ];
+    extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
      # firefox
       kate
