@@ -24,9 +24,12 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+
   services.tailscale.enable = true;
-
-
+  systemd.services.tailscale = {
+    after = [ "network.target" "network-manager.service" ];
+    };
+ 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
@@ -94,7 +97,7 @@
   users.users.philip = {
     isNormalUser = true;
     description = "philip";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "wireshark" ];
     packages = with pkgs; [
      # firefox
       kate
@@ -133,6 +136,9 @@
     bitwarden
     vagrant
     python3
+    protonvpn-gui
+    pkgs.libsForQt5.kalk
+    pkgs.wireshark
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
