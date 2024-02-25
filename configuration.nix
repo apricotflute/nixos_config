@@ -160,7 +160,6 @@
   # Open ports in the firewall
   networking.firewall.allowedTCPPortRanges = [ { from = 1714 ; to = 1764; } ];
   networking.firewall.allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
-  networking.firewall.allowedUDPPorts = [  ];
   # Or disable the firewall altogether.
   networking.firewall.enable = true;
 
