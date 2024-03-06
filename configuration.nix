@@ -57,19 +57,9 @@
     enable = true;
     displayManager.sddm.enable = true;
     desktopManager.plasma5.enable = true;
-    layout = "de";
-    xkbVariant = "";
+    xkb.layout = "de";
+    xkb.variant = "";
   };
-
-  # Enable the KDE Plasma Desktop Environment.
-  #services.xserver.displayManager.sddm.enable = true;
-  #services.xserver.desktopManager.plasma5.enable = true;
-
-  # Configure keymap in X11
-#  services.xserver = {
-#    layout = "de";
-#    xkbVariant = "";
-#  };
 
   # Configure console keymap
   console.keyMap = "de";
@@ -96,6 +86,18 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+#  users.users.philip = {
+#    isNormalUser = true;
+#    description = "philip";
+#    extraGroups = [ "networkmanager" "wheel" "wireshark" ];
+#    packages = with pkgs; [
+#     # firefox
+#      kate
+#     # thunderbird
+#    ];
+#  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -128,9 +130,14 @@
     bitwarden
     vagrant
     python3
+    direnv
     protonvpn-gui
     pkgs.libsForQt5.kalk
     pkgs.wireshark
+    ausweisapp
+    sshpass
+    ciscoPacketTracer8
+    mullvad-vpn
   ];
 
 
