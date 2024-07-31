@@ -10,6 +10,8 @@
       ./hardware-configuration.nix
       ./vm.nix
       ./user-config.nix
+#      ./nfs-config.nix
+      ./lanzaboote.nix
     ];
 
   # Bootloader.
@@ -51,15 +53,28 @@
     LC_TELEPHONE = "de_DE.UTF-8";
     LC_TIME = "de_DE.UTF-8";
   };
+  
 
-  # Enable the X11 windowing system.
+
+
+  # Enable SDDM display manager with Wayland support
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+
+  # Set the default session (should be a string, not a boolean)
+  services.displayManager.defaultSession = "plasma";
+
+  # Enable the X11 windowing system
   services.xserver = {
     enable = true;
-    displayManager.sddm.enable = true;
-    desktopManager.plasma5.enable = true;
     xkb.layout = "de";
     xkb.variant = "";
   };
+ 
+  # Enable the Plasma 6 desktop environment
+  services.desktopManager.plasma6.enable = true;
+
+
 
   # Configure console keymap
   console.keyMap = "de";
@@ -68,7 +83,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  #  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -126,18 +141,23 @@
     ansible
     ansible-lint
     ansible-later
-    libsForQt5.kdeconnect-kde
+    kdePackages.kdeconnect-kde
     bitwarden
     vagrant
     python3
     direnv
     protonvpn-gui
-    pkgs.libsForQt5.kalk
+    kdePackages.kalk
     pkgs.wireshark
     ausweisapp
     sshpass
-    ciscoPacketTracer8
+ #   ciscoPacketTracer8
     mullvad-vpn
+    mullvad-browser
+    tor-browser
+    sbctl 
+    niv
+    cryptomator
   ];
 
 
